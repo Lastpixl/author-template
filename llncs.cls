@@ -10,7 +10,6 @@
 \ProcessOptions
 
 \LoadClass[twoside]{article}
-\RequirePackage{multicol} % needed for the list of participants, index
 
 \setlength{\textwidth}{12.2cm}
 \setlength{\textheight}{19.3cm}
@@ -36,85 +35,6 @@
      \par}%
   \fi}
 %
-\def\switcht@albion{%
-\def\abstractname{Abstract.}
-\def\ackname{Acknowledgement.}
-\def\andname{and}
-\def\lastandname{\unskip, and}
-\def\appendixname{Appendix}
-\def\chaptername{Chapter}
-\def\claimname{Claim}
-\def\conjecturename{Conjecture}
-\def\contentsname{Table of Contents}
-\def\corollaryname{Corollary}
-\def\definitionname{Definition}
-\def\examplename{Example}
-\def\exercisename{Exercise}
-\def\figurename{Fig.}
-\def\keywordname{{\bf Key words:}}
-\def\indexname{Index}
-\def\lemmaname{Lemma}
-\def\contriblistname{List of Contributors}
-\def\listfigurename{List of Figures}
-\def\listtablename{List of Tables}
-\def\mailname{{\it Correspondence to\/}:}
-\def\noteaddname{Note added in proof}
-\def\notename{Note}
-\def\partname{Part}
-\def\problemname{Problem}
-\def\proofname{Proof}
-\def\propertyname{Property}
-\def\propositionname{Proposition}
-\def\questionname{Question}
-\def\remarkname{Remark}
-\def\seename{see}
-\def\solutionname{Solution}
-\def\subclassname{{\it Subject Classifications\/}:}
-\def\tablename{Table}
-\def\theoremname{Theorem}}
-\switcht@albion
-% Names of theorem like environments are already defined
-% but must be translated if another language is chosen
-%
-% French section
-\def\switcht@francais{%\typeout{On parle francais.}%
- \def\abstractname{R\'esum\'e.}%
- \def\ackname{Remerciements.}%
- \def\andname{et}%
- \def\lastandname{ et}%
- \def\appendixname{Appendice}
- \def\chaptername{Chapitre}%
- \def\claimname{Pr\'etention}%
- \def\conjecturename{Hypoth\`ese}%
- \def\contentsname{Table des mati\`eres}%
- \def\corollaryname{Corollaire}%
- \def\definitionname{D\'efinition}%
- \def\examplename{Exemple}%
- \def\exercisename{Exercice}%
- \def\figurename{Fig.}%
- \def\keywordname{{\bf Mots-cl\'e:}}
- \def\indexname{Index}
- \def\lemmaname{Lemme}%
- \def\contriblistname{Liste des contributeurs}
- \def\listfigurename{Liste des figures}%
- \def\listtablename{Liste des tables}%
- \def\mailname{{\it Correspondence to\/}:}
- \def\noteaddname{Note ajout\'ee \`a l'\'epreuve}%
- \def\notename{Remarque}%
- \def\partname{Partie}%
- \def\problemname{Probl\`eme}%
- \def\proofname{Preuve}%
- \def\propertyname{Caract\'eristique}%
-%\def\propositionname{Proposition}%
- \def\questionname{Question}%
- \def\remarkname{Remarque}%
- \def\seename{voir}
- \def\solutionname{Solution}%
- \def\subclassname{{\it Subject Classifications\/}:}
- \def\tablename{Tableau}%
- \def\theoremname{Th\'eor\`eme}%
-}
-
 % Ragged bottom for the actual page
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
@@ -635,17 +555,6 @@ to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
     \noindent
     \llap{\hb@xt@1em{\hss\@makefnmark\ }}\ignorespaces#1}
 
-\long\def\@makecaption#1#2{%
-  \vskip\abovecaptionskip
-  \sbox\@tempboxa{{\bfseries #1.} #2}%
-  \ifdim \wd\@tempboxa >\hsize
-    {\bfseries #1.} #2\par
-  \else
-    \global \@minipagefalse
-    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
-  \fi
-  \vskip\belowcaptionskip}
-
 \def\fps@figure{htbp}
 \def\fnum@figure{\figurename\thinspace\thefigure}
 \def \@floatboxreset {%
@@ -656,23 +565,6 @@ to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
 }
 \def\fps@table{htbp}
 \def\fnum@table{\tablename~\thetable}
-\renewenvironment{table}
-               {\setlength\abovecaptionskip{0\p@}%
-                \setlength\belowcaptionskip{10\p@}%
-                \@float{table}}
-               {\end@float}
-\renewenvironment{table*}
-               {\setlength\abovecaptionskip{0\p@}%
-                \setlength\belowcaptionskip{10\p@}%
-                \@dblfloat{table}}
-               {\end@dblfloat}
-
-\long\def\@caption#1[#2]#3{\par\addcontentsline{\csname
-  ext@#1\endcsname}{#1}{\protect\numberline{\csname
-  the#1\endcsname}{\ignorespaces #2}}\begingroup
-    \@parboxrestore
-    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
-  \endgroup}
 
 % LaTeX does not provide a command to enter the authors institute
 % addresses. The \institute command is defined here.
@@ -812,137 +704,6 @@ to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
  {\small\institutename}
  \end{center}%
  }
-
-% definition of the "\spnewtheorem" command.
-%
-% Usage:
-%
-%     \spnewtheorem{env_nam}{caption}[within]{cap_font}{body_font}
-% or  \spnewtheorem{env_nam}[numbered_like]{caption}{cap_font}{body_font}
-% or  \spnewtheorem*{env_nam}{caption}{cap_font}{body_font}
-%
-% New is "cap_font" and "body_font". It stands for
-% fontdefinition of the caption and the text itself.
-%
-% "\spnewtheorem*" gives a theorem without number.
-%
-% A defined spnewthoerem environment is used as described
-% by Lamport.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\def\@thmcountersep{}
-\def\@thmcounterend{.}
-
-\def\spnewtheorem{\@ifstar{\@sthm}{\@Sthm}}
-
-% definition of \spnewtheorem with number
-
-\def\@spnthm#1#2{%
-  \@ifnextchar[{\@spxnthm{#1}{#2}}{\@spynthm{#1}{#2}}}
-\def\@Sthm#1{\@ifnextchar[{\@spothm{#1}}{\@spnthm{#1}}}
-
-\def\@spxnthm#1#2[#3]#4#5{\expandafter\@ifdefinable\csname #1\endcsname
-   {\@definecounter{#1}\@addtoreset{#1}{#3}%
-   \expandafter\xdef\csname the#1\endcsname{\expandafter\noexpand
-     \csname the#3\endcsname \noexpand\@thmcountersep \@thmcounter{#1}}%
-   \expandafter\xdef\csname #1name\endcsname{#2}%
-   \global\@namedef{#1}{\@spthm{#1}{\csname #1name\endcsname}{#4}{#5}}%
-                              \global\@namedef{end#1}{\@endtheorem}}}
-
-\def\@spynthm#1#2#3#4{\expandafter\@ifdefinable\csname #1\endcsname
-   {\@definecounter{#1}%
-   \expandafter\xdef\csname the#1\endcsname{\@thmcounter{#1}}%
-   \expandafter\xdef\csname #1name\endcsname{#2}%
-   \global\@namedef{#1}{\@spthm{#1}{\csname #1name\endcsname}{#3}{#4}}%
-                               \global\@namedef{end#1}{\@endtheorem}}}
-
-\def\@spothm#1[#2]#3#4#5{%
-  \@ifundefined{c@#2}{\@latexerr{No theorem environment `#2' defined}\@eha}%
-  {\expandafter\@ifdefinable\csname #1\endcsname
-  {\global\@namedef{the#1}{\@nameuse{the#2}}%
-  \expandafter\xdef\csname #1name\endcsname{#3}%
-  \global\@namedef{#1}{\@spthm{#2}{\csname #1name\endcsname}{#4}{#5}}%
-  \global\@namedef{end#1}{\@endtheorem}}}}
-
-\def\@spthm#1#2#3#4{\topsep 7\p@ \@plus2\p@ \@minus4\p@
-\refstepcounter{#1}%
-\@ifnextchar[{\@spythm{#1}{#2}{#3}{#4}}{\@spxthm{#1}{#2}{#3}{#4}}}
-
-\def\@spxthm#1#2#3#4{\@spbegintheorem{#2}{\csname the#1\endcsname}{#3}{#4}%
-                    \ignorespaces}
-
-\def\@spythm#1#2#3#4[#5]{\@spopargbegintheorem{#2}{\csname
-       the#1\endcsname}{#5}{#3}{#4}\ignorespaces}
-
-\def\@spbegintheorem#1#2#3#4{\trivlist
-                 \item[\hskip\labelsep{#3#1\ #2\@thmcounterend}]#4}
-
-\def\@spopargbegintheorem#1#2#3#4#5{\trivlist
-      \item[\hskip\labelsep{#4#1\ #2}]{#4(#3)\@thmcounterend\ }#5}
-
-% definition of \spnewtheorem* without number
-
-\def\@sthm#1#2{\@Ynthm{#1}{#2}}
-
-\def\@Ynthm#1#2#3#4{\expandafter\@ifdefinable\csname #1\endcsname
-   {\global\@namedef{#1}{\@Thm{\csname #1name\endcsname}{#3}{#4}}%
-    \expandafter\xdef\csname #1name\endcsname{#2}%
-    \global\@namedef{end#1}{\@endtheorem}}}
-
-\def\@Thm#1#2#3{\topsep 7\p@ \@plus2\p@ \@minus4\p@
-\@ifnextchar[{\@Ythm{#1}{#2}{#3}}{\@Xthm{#1}{#2}{#3}}}
-
-\def\@Xthm#1#2#3{\@Begintheorem{#1}{#2}{#3}\ignorespaces}
-
-\def\@Ythm#1#2#3[#4]{\@Opargbegintheorem{#1}
-       {#4}{#2}{#3}\ignorespaces}
-
-\def\@Begintheorem#1#2#3{#3\trivlist
-                           \item[\hskip\labelsep{#2#1\@thmcounterend}]}
-
-\def\@Opargbegintheorem#1#2#3#4{#4\trivlist
-      \item[\hskip\labelsep{#3#1}]{#3(#2)\@thmcounterend\ }}
-
-%definition of divers theorem environments
-\spnewtheorem*{claim}{Claim}{\itshape}{\rmfamily}
-\spnewtheorem*{proof}{Proof}{\itshape}{\rmfamily}
-\def\spn@wtheorem#1#2#3#4{\@spynthm{#1}{#2}{#3}{#4}
-                          \@addtoreset{#1}{chapter}}%
-\spn@wtheorem{case}{Case}{\itshape}{\rmfamily}
-\spn@wtheorem{conjecture}{Conjecture}{\itshape}{\rmfamily}
-\spn@wtheorem{corollary}{Corollary}{\bfseries}{\itshape}
-\spn@wtheorem{definition}{Definition}{\bfseries}{\itshape}
-\spn@wtheorem{example}{Example}{\itshape}{\rmfamily}
-\spn@wtheorem{exercise}{Exercise}{\itshape}{\rmfamily}
-\spn@wtheorem{lemma}{Lemma}{\bfseries}{\itshape}
-\spn@wtheorem{note}{Note}{\itshape}{\rmfamily}
-\spn@wtheorem{problem}{Problem}{\itshape}{\rmfamily}
-\spn@wtheorem{property}{Property}{\itshape}{\rmfamily}
-\spn@wtheorem{proposition}{Proposition}{\bfseries}{\itshape}
-\spn@wtheorem{question}{Question}{\itshape}{\rmfamily}
-\spn@wtheorem{solution}{Solution}{\itshape}{\rmfamily}
-\spn@wtheorem{remark}{Remark}{\itshape}{\rmfamily}
-\spn@wtheorem{theorem}{Theorem}{\itshape}{\rmfamily}
-
-\def\@takefromreset#1#2{%
-    \def\@tempa{#1}%
-    \let\@tempd\@elt
-    \def\@elt##1{%
-        \def\@tempb{##1}%
-        \ifx\@tempa\@tempb\else
-            \@addtoreset{##1}{#2}%
-        \fi}%
-    \expandafter\expandafter\let\expandafter\@tempc\csname cl@#2\endcsname
-    \expandafter\def\csname cl@#2\endcsname{}%
-    \@tempc
-    \let\@elt\@tempd}
-
-\def\theopargself{\def\@spopargbegintheorem##1##2##3##4##5{\trivlist
-      \item[\hskip\labelsep{##4##1\ ##2}]{##4##3\@thmcounterend\ }##5}
-                  \def\@Opargbegintheorem##1##2##3##4{##4\trivlist
-      \item[\hskip\labelsep{##3##1}]{##3##2\@thmcounterend\ }}
-      }
 
 \renewenvironment{abstract}{%
       \list{}{\advance\topsep by0.35cm\relax\small
