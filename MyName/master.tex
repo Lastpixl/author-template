@@ -4,7 +4,6 @@
 
 \settitle[Security of trotinettes]{Security of \emph{trotinettes}: remote control access}
 
-
 \setauthor[M.~MyName, A.~MyOtherName]{MyFirstName MyName \and AnotherFirstName MyOtherName\\
   \email{myfirstname.myname@mycorp.com\\a.myothername@mycorp.com}}
 
@@ -60,9 +59,9 @@ deserunt mollit anim id est laborum.
 \begin{figure}[ht]
   \centering
   \ifssticbw
-    \includegraphics[width=0.4\textwidth]{MonNom/img/bw-archi}
+    \includegraphics[width=0.4\textwidth]{MyName/img/bw-archi}
   \else
-    \includegraphics[width=0.4\textwidth]{MonNom/img/archi}
+    \includegraphics[width=0.4\textwidth]{MyName/img/archi}
   \fi
   \caption{Figure caption}
   \label{fig:myname:archi}
@@ -147,6 +146,39 @@ def hello(name):
 if __name__ == '__main__':
     hello(sys.argv[1] if len(sys.argv) > 1 else 'everybody')
 \end{lstlisting}
+
+% Table inclusion
+
+It is also possible to include tables, as done with
+table~\ref{tbl:myname}. The numbering is done using another counter.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|c|}
+  \hline
+  Line 1 \\
+  Line 2 \\
+  ... \\
+  Line n \\
+  \hline
+  \end{tabular}
+  \caption{Table caption}
+  \label{tbl:myname}
+\end{table}
+
+% Algorithm description
+
+Finally, we include the \texttt{algorithm} package which allow to
+include algorithm descriptions (see~\cite{alg:monnom} for example).
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+  \Statex \textbf{Input:} $x$
+  \Statex \textbf{Output:} $x+1$
+  \State Add one!
+\end{algorithmic}
+\caption{My pretty algo}\label{alg:myname}
+\end{algorithm}
 
 \bibliography{MyName/biblio}
 

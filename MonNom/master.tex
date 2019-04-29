@@ -146,6 +146,40 @@ if __name__ == '__main__':
     hello(sys.argv[1] if len(sys.argv) > 1 else 'everybody')
 \end{lstlisting}
 
+% Exemple d'inclusion d'un tableau
+
+Il est également possible d'inclure des tableaux comme le
+tableau~\ref{tbl:monnom}, dont la numérotation se fait à part.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|c|}
+  \hline
+  Ligne 1 \\
+  Ligne 2 \\
+  ... \\
+  Ligne n \\
+  \hline
+  \end{tabular}
+  \caption{Légende du tableau}
+  \label{tbl:monnom}
+\end{table}
+
+% Exemple d'inclusion d'un algorithme
+
+Enfin, il existe le \emph{package} \texttt{algorithm} permet d'inclure
+des algorithmes (voir~\cite{alg:monnom} pour un exemple).
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+  \Statex \textbf{Input:} $x$
+  \Statex \textbf{Output:} $x+1$
+  \State Ajouter un!
+\end{algorithmic}
+\caption{Mon bel algo}\label{alg:monnom}
+\end{algorithm}
+
+
 \bibliography{MonNom/biblio}
 
 % Quelques éléments complémentaires de typo
