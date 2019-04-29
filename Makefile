@@ -63,9 +63,9 @@ clean:
 	$(LATEX) $(LFLAGS) $<
 	bibtex $(@:.pdf=.aux) > /dev/null || true
 	makeindex $(@:.pdf=.idx) > /dev/null 2> /dev/null || true
-	$(LATEX) $(LFLAGS) $< > /dev/null
-	@grep -Eqc $(BIB_MISSING) $(@:.pdf=.log) && $(LATEX) $< > /dev/null ; true
-	@grep -Eqc $(REFERENCE_UNDEFINED) $(@:.pdf=.log) && $(LATEX) $< > /dev/null; true
+	$(LATEX) $(LFLAGS) $<
+	@grep -Eqc $(BIB_MISSING) $(@:.pdf=.log) && $(LATEX) $< ; true
+	@grep -Eqc $(REFERENCE_UNDEFINED) $(@:.pdf=.log) && $(LATEX) $<; true
 	-grep --color '\(Warning\|Overful\).*' $(@:.pdf=.log) || true
 
 %.pdf: %.tmp.pdf
@@ -151,6 +151,7 @@ _articles.tex: $(SRC) Makefile
 Makefile.standalone-targets: $(SRC) Makefile
 	@for d in [^_]*/; do \
 		i=$$(basename "$$d"); \
+		[ -f "$$i/master.tex" ] || continue; \
 		check_i=$$(echo "$$i" | tr -cd "a-zA-Z0-9_+-"); \
 		if [ "$$i" = "$$check_i" ]; then \
 			echo "# Targets for $$i"; \
@@ -195,7 +196,7 @@ Makefile.standalone-targets: $(SRC) Makefile
 			echo; \
 			echo; \
 			echo; \
-else \
+		else \
 			echo "Ignoring invalid dir name ($$i)." >&2; \
 		fi \
 	done > Makefile.standalone-targets
