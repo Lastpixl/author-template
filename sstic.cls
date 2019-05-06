@@ -200,7 +200,7 @@
                 Import-Module,Import-PSSession,Invoke-Command,Invoke-Expression,%
                 Invoke-History,Invoke-Item,Invoke-RestMethod,Invoke-WebRequest,%
                 Invoke-WmiMethod,Measure-Object,mkdir,Move-Item,Move-ItemProperty,%
-                New-Alias,New-Item,New-Module,New-PSDrive,New-PSSession,%
+                New-object,New-Alias,New-Item,New-Module,New-PSDrive,New-PSSession,%
                 New-PSSessionConfigurationFile,New-Variable,Out-GridView,%
                 Out-Host,Out-Printer,Pop-Location,powershell_ise.exe,%
                 Push-Location,Receive-Job,Receive-PSSession,Remove-Item,%
@@ -212,7 +212,7 @@
                 Set-PSBreakpoint,Set-TimeZone,Set-Variable,Set-WmiInstance,%
                 Show-Command,Sort-Object,Start-Job,Start-Process,Start-Service,%
                 Start-Sleep,Stop-Job,Stop-Process,Stop-Service,Suspend-Job,%
-                Tee-Object,Trace-Command,Wait-Job,Where-Object,Write-Output
+                Tee-Object,Trace-Command,Wait-Job,Where-Object,Write-Output%
 	},
 	morekeywords={Do,Else,For,ForEach,Function,If,In,Until,While},
 	alsodigit={-},
