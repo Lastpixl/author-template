@@ -39,8 +39,10 @@ ISBN: XXX-X-XXXXXXX-X-X
 \end{center}
 
 
-
-\chapter*{Pr\'eface}
+\clearpage
+\phantomsection
+\pdfbookmark{Pr\'eface}{preface}
+\chapter*{Préface}
 
 \input{_frontmatter/preface}
 \clearpage
@@ -81,10 +83,11 @@ ISBN: XXX-X-XXXXXXX-X-X
 
 
 \myclearpage
+\phantomsection
 \cleardoublepage
 \newpage
-\addtocmark[2]{Index des auteurs} % additional numbered TOC entry
 \renewcommand{\indexname}{Index des auteurs}
+\addcontentsline{toc}{chapter}{\indexname}
 \printindex
 
 

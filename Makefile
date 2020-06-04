@@ -22,7 +22,7 @@ HTFLAGS?="xhtml,charset=utf-8" " -cunihtf -utf8"
 
 # ebook metadata
 CALFLAGS+=--book-producer STIC --publisher STIC
-CALFLAGS+=--series SSTIC2019 --language fr
+CALFLAGS+=--series SSTIC2020 --language fr
 
 # IMGPDFS=$(wildcard */img/*.pdf */img/**/*.pdf)
 # IMGEPSS=$(foreach img, $(IMGPDFS), $(img:pdf=eps))
@@ -44,9 +44,10 @@ export: Makefile.standalone-targets
 
 
 clean:
-	rm -f *.aux *.bbl *.blg *.idx *.ilg *.ind *.log *.toc
+	rm -f *.aux *.bbl *.blg *.idx *.ilg *.ind *.log *.toc *.out
 	rm -f _master.pdf
-	rm -f _articles.tex Makefile.standalone-targets
+	rm -f _articles.tex 
+	rm -f Makefile.standalone-targets
 	rm -f *.tmp.tex *.tmp.pdf
 	rm -f *.ebook.tex *.ebook.css *.ebook.dvi *.ebook.html *.ebook.4ct *.ebook.4tc
 	rm -f *.ebook.idv *.ebook.lg *.ebook.pdf *.ebook.tmp *.ebook.xref
@@ -70,6 +71,9 @@ clean:
 
 %.pdf: %.tmp.pdf
 	gs -sOutputFile=$@ $(GSFLAGS) $< < /dev/null > /dev/null
+
+%-online.pdf: %-online.tmp.pdf
+	gs -sOutputFile=$@ $(GSFLAGS) -dPrinted=false $< < /dev/null > /dev/null
 
 %.tgz: %.pdf %
 	@tar czf $@ $(@:.tgz=)/ $(@:.tgz=.pdf)

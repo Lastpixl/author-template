@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}%[1995/12/01] TODO: Add a date?
-\ProvidesClass{sstic}[2018/08/21 SSTIC Proceedings style]
+\ProvidesClass{sstic}[2020/05/26 SSTIC Proceedings style]
 
 %%%%%%%%%
 % Babel %
@@ -51,8 +51,8 @@
 \newcommand\settitle[2][]{%
  \title{#2}%
  \ifthenelse{\equal{#1}{}}%
-  {\renewcommand{\theshorttitle}{#2}\toctitle{#2}\titlerunning{#2}}%
-  {\renewcommand{\theshorttitle}{#1}\toctitle{#1}\titlerunning{#1}}%
+  {\renewcommand{\theshorttitle}{#2}\renewcommand\toctitle{#2}\titlerunning{#2}}%
+  {\renewcommand{\theshorttitle}{#1}\renewcommand\toctitle{#1}\titlerunning={#1}}%
 }
 
 \newcommand{\theshortauthor}{}
@@ -337,6 +337,7 @@
 \RequirePackage[hyphens]{url}
 \RequirePackage[super]{nth}
 \RequirePackage[binary-units=true]{siunitx}
+\RequirePackage{fnpct}  % Manage footnote marks’ interaction with punctuation
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -351,8 +352,6 @@
 \egroup
 \renewcommand{\thesection}{\arabic{section}}
 }
-
-
 
 
 %%%%%%%%%%%%%%%%%
@@ -370,6 +369,31 @@
          \else
             \unskip,
          \fi}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% hyperref must be last %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifssticpaper
+  \newcommand{\pdfbookmark}{}
+  \newcommand{\phantomsection}{}
+  \newcommand{\href}[2]{#2}
+  \newcommand{\hyperref}[2]{#1}
+  \newcommand{\hypertarget}[2]{#2}
+  \newcommand{\hyperlink}[2]{#2}
+\else
+  \RequirePackage{pdfpages}
+  \RequirePackage[hidelinks]{hyperref}
+  \makeatletter
+    \renewcommand*{\toclevel@chapter}{-1}  % so that index looks like a chapter in toc but is at toplevel in pdfoutline
+    \providecommand*{\toclevel@title}{0}  % so that articles titles appear in pdfoutline
+    \def\toclevel@author{1000}  % so that articles authors do not appear as an additional entry in pdfoutline (this is kind of an ugly hack)
+  \makeatother
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{plain}
 

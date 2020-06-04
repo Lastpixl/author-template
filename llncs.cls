@@ -1,4 +1,4 @@
-% LLNCS DOCUMENT CLASS -- version 2.14 (17-Aug-2004)
+% LLNCS DOCUMENT CLASS -- version 2.14s (17-Aug-2004)
 % Stripped version
 
 % languages
@@ -578,7 +578,7 @@ to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
 \newtoks\tocauthor
 \newbox\titrun
 \newtoks\titlerunning
-\newtoks\toctitle
+\newcommand\toctitle{}
 
 \def\clearheadinfo{\gdef\@author{No Author Given}%
                    \gdef\@title{No Title Given}%
@@ -586,7 +586,7 @@ to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
                    \gdef\@institute{No Institute Given}%
                    \gdef\@thanks{}%
                    \global\titlerunning={}\global\authorrunning={}%
-                   \global\toctitle={}\global\tocauthor={}}
+                   \global\renewcommand\toctitle{}\global\tocauthor={}}
 
 \def\institute#1{\gdef\@institute{#1}}
 
@@ -654,8 +654,8 @@ to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
     \def\thanks##1{\unskip{}}\def\fnmsep{\unskip}%
     \instindent=\hsize
     \advance\instindent by-\headlineindent
-    \if!\the\toctitle!\addcontentsline{toc}{title}{\@title}\else
-       \addcontentsline{toc}{title}{\the\toctitle}\fi
+    \if!\toctitle!\addcontentsline{toc}{title}{\@title}\else
+       \addcontentsline{toc}{title}{\toctitle}\fi
 %
     \if!\the\tocauthor!\relax
       {\def\and{\noexpand\protect\noexpand\and}%
