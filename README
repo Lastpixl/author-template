@@ -6,6 +6,9 @@ Utilisation
 
 Pour compiler les sources, c'est aussi simple que :
     $ make
+Ou avec docker si vous ne voulez pas installer LaTeX:
+    $ docker build -t sstic --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
+    $ docker run --rm -it -v ${PWD}:/SSTIC:rw -u `id -u`:`id -g` sstic
 
 Par défaut, cette commande compile tous les articles présents dans le
 répertoire (un article est un répertoire dont le nom est composé de
