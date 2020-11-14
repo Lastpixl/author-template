@@ -35,10 +35,18 @@ CALFLAGS+=--series SSTIC2020 --language fr
 # Generic targets #
 ###################
 
-.PHONY: default export clean
+.PHONY: default export clean from_docker from_docker_su
 
 
 default: Makefile.standalone-targets
+
+from_docker_su:
+	sudo docker run --rm -it -v ${PWD}:/SSTIC:rw -u `id -u`:`id -g` sstic/actes
+
+from_docker:
+	docker run --rm -it -v ${PWD}:/SSTIC:rw -u `id -u`:`id -g` sstic/actes
+# "-v ${PWD}:/SSTIC:rw" mount the current directory inside of the container (with RW access)
+# "-u `id -u`:`id -g`" ensures that files written by the container belong to the current user
 
 export: Makefile.standalone-targets
 

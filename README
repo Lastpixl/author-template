@@ -5,12 +5,11 @@ Utilisation
 ===========
 
 Pour compiler les sources, c'est aussi simple que :
+    $ make from_docker
+
+Cette commande nécessite [docker](https://docs.docker.com/engine/install/).
+Si vous préférez utiliser votre distribution LaTeX locale:
     $ make
-Ou avec docker si vous ne voulez pas installer LaTeX:
-    $ docker build -t sstic .
-    $ docker run --rm -it -v ${PWD}:/SSTIC:rw -u `id -u`:`id -g` sstic
-"-v ${PWD}:/SSTIC:rw" mount the current directory inside of the container (with RW access)
-"-u `id -u`:`id -g`" ensures that files written by the container belong to the current user
 
 Par défaut, cette commande compile tous les articles présents dans le
 répertoire (un article est un répertoire dont le nom est composé de
@@ -48,7 +47,8 @@ Publication
 ===========
 
 Vous devez envoyer les *sources* à actes (AT) lists.sstic.org avant
-la date butoir.
+la date butoir. Les sources peuvent être exportées via la commande:
+    $ make export
 
 L'auteur consciencieux prendre soin de corriger tous les warnings
 avant de nous envoyer ses sources :). En particulier, les erreurs les
@@ -219,6 +219,20 @@ les actes de manière fidèle.
 
 FAQ
 ===
+
+Q) docker: Got permission denied while trying to connect to the Docker daemon socket
+
+R) Il faut configuer docker pour être utilisable par un utilisateur non-privilégié:
+https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+ou utiliser la cible from_docker_su:
+    $ make from_docker_su
+
+
+Q) Quels packages LaTeX sont nécessaires/autorisés ?
+
+R) La liste est disponible dans le fichier Dockerfile, utilisé pour
+générer l'image invoquée par la cible from_docker.
+
 
 Q) LaTeX m'insulte avec le message sordide suivant :
 ! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.
