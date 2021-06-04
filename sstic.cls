@@ -134,6 +134,9 @@
 \RequirePackage{listings}
 \RequirePackage[noend]{algpseudocode}
 
+% Always show line numbers by default (use \begin{lstlisting}[numbers=none,...] to disable them)
+\lstset{numbers=left}
+
 \definecolor{grigri}{RGB}{233,232,234}
 \lstset{breaklines=true,
         tabsize=4,
