@@ -1,0 +1,11 @@
+compilation_actes:
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - docker run --rm --cap-drop ALL --network none -v ${PWD}:/SSTIC:rw -u `id -u`:`id -g` sstic/actes
+    - rm -f *.tmp.pdf
+  artifacts:
+    paths:
+      - '*.pdf'
+    expire_in: 30 days

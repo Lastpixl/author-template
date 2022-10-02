@@ -1,0 +1,25 @@
+name: Compilation des actes
+
+on: push
+
+jobs: 
+  compilation-actes:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Compile
+        run: |
+          docker run --rm \
+            --cap-drop ALL \
+            --network none \
+            -v ${PWD}:/SSTIC:rw \
+            -u `id -u`:`id -g` \
+            sstic/actes
+          rm -f *.tmp.pdf
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: actes
+          path: '*.pdf'
+
